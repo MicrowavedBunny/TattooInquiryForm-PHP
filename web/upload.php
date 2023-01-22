@@ -1,8 +1,8 @@
 <?php
 // Include the database configuration file  
-require_once 'dbConfig.php';
-require_once 'mailer.php';
-require_once 'emailTemplate.php';
+require_once 'includes/dbConfig.php';
+require_once 'includes/mailer.php';
+require_once 'includes/emailTemplate.php';
 
 $pB_Placement = false;
 $pB_Reference1 = false;
@@ -128,7 +128,7 @@ if (isset($_POST["submit"])) {
         if ($id == 0)
             $id = 1;
         // Insert image content into database 
-        $insert = $db->query("INSERT into images (id, placement, reference1, reference2, reference3, created) VALUES ('$id','$imgContent', '$reference1', '$reference2', '$reference3', NOW())");
+        $insert = $db->query("INSERT into images (id, placementImage, reference1, reference2, reference3, created) VALUES ('$id','$imgContent', '$reference1', '$reference2', '$reference3', NOW())");
 
         if ($insert) {
             $status = 'success';

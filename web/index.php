@@ -27,7 +27,7 @@
   <!-- maybe user later <input type="hidden" name="formID" value="221827538638163"> -->
 
   <!--edit this image-->
-  <img class="rounded mx-auto d-block  p-1" src="InsertYourLogo" alt="Logo" height="163" width="250">
+  <img class="rounded mx-auto d-block  p-1" src="https://i.ibb.co/NptTPKk/logo.png" alt="Logo" height="163" width="250">
 
   <!--box for form mx-5 -->
   <div style="background-color: #f7f2ff; box-shadow: 0rem 1.375rem 3.25rem 2.125rem rgb(255 255 255 / 24%)"
