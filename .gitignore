@@ -1,0 +1,3 @@
+##avoid posting my secrets
+includes/dbConfig.php
+includes/mailer.php
