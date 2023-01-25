@@ -24,4 +24,5 @@ Simple php form for tattoo inquries that emails artist and stores submitted data
 Create database and run the included sql script to setup tables.<br />
 Install XAMPP/PHP/Composer<br />
 Ensure you have PHPMailer installed ```composer require phpmailer/phpmailer```<br />
-Edit files to include your database information/email information
+Edit files to include your database information/email information <br />
+Login using Username: 'test' Password: 'test' in order to create new user via registration page (delete test user from DB after)

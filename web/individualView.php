@@ -17,7 +17,7 @@ echo viewTemplate2($row['tattoo_size'], $row['style'], $row['color'], $row['desc
 <img class="img-thumbnail" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["reference1"]); ?>" />
 
 <?php
-echo viewTemplate3($row['tattoo_size'], $row['style'], $row['color'], $row['description'], $row['font']);
+echo viewTemplate3();
 ?>
 
 <img class="img-thumbnail" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row["reference2"]); ?>" />

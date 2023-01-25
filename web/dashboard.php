@@ -1,18 +1,41 @@
 <?php
-// Include the database configuration file  
-require_once 'includes/dbConfig.php';
-?>
-<html>
+session_start();
+include('includes/dbconfig.php');
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
-<body>
-    <div class="w-100 p-3 mw-100">
-        <table class="table table-bordered table-hover table-sm table-responsive w-100 p-3 mw-100">
-            <thead class="table-dark">
+<body class=" sticky-footer bg-light" id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="register.php">Register Users</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered table table-hover table-sm table-responsive w-100 p-3 mw-100">
+            <thead>
                 <tr>
                     <th scope="col">Time Submitted</th>
                     <th scope="col">Name</th>
@@ -38,7 +61,10 @@ require_once 'includes/dbConfig.php';
                 </tr>
             </thead>
             <tbody>
-                <?php $results = $db->query("SELECT * FROM formsubmission LEFT JOIN images ON formsubmission.id = images.id ORDER BY formsubmission.id");
+                <?php 
+                $count=1;
+                $results = $db->query("SELECT * FROM formsubmission LEFT JOIN images ON formsubmission.id = images.id ORDER BY formsubmission.id");
+                if (mysqli_num_rows($results) > 0) {
                 while ($row = $results->fetch_assoc()) { ?>
                     <tr>
                         <th scope="row">
@@ -110,10 +136,41 @@ require_once 'includes/dbConfig.php';
                         </td>
                     </tr>
                     <?php
-                } ?>
+                $count++;
+            }
+            } else {
+            echo '0 results';
+            }?>
             </tbody>
         </table>
+    </div>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
 </html>
+<?php
+} else {
+    header("Location: login.php");
+    die();
+}
+?>
